@@ -21,7 +21,7 @@ provider:
   # commit your .env.
 
   environment:
-    tableName: notes
+    tableName: test
 
   iamRoleStatements:    
     - Effect: Allow      
@@ -46,19 +46,11 @@ resources:
 # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross domain api call  
 # - authorizer: authenticate using the AWS IAM role    
 functions:
-  create:
-    handler: create.main
-    events:
-      - http:
-          path: notes
-          method: post
-          cors: true
-          authorizer: aws_iam
   get:
     handler: get.main
     events:
       - http:
-          path: notes/{id}
+          path: test/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -66,23 +58,7 @@ functions:
     handler: list.main
     events:
       - http:
-          path: notes
+          path: test
           method: get
-          cors: true
-          authorizer: aws_iam
-  update:
-    handler: update.main
-    events:
-      - http:
-          path: notes/{id}
-          method: put
-          cors: true
-          authorizer: aws_iam
-  delete:
-    handler: delete.main
-    events:
-      - http:
-          path: notes/{id}
-          method: delete
           cors: true
           authorizer: aws_iam
